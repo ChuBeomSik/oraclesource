@@ -81,7 +81,7 @@ SELECT
 	EMPNO as EMPLOYEE_NO,
 	ENAME AS EMPLOYEE_NAME,
 	MGR MANAGER,
-	sal AS SALARY,
+	SAL AS SALARY,
 	COMM AS COMMISION,
 	DEPTNO AS DEPARTMENT_NO
 FROM
@@ -95,3 +95,31 @@ ORDER BY
 
 -- 부서번호가 30번인 사원 전체 조회
 SELECT * FROM emp WHERE DEPTNO = 30;
+-- EMPNO이 7839인 사원
+SELECT * FROM EMP e WHERE EMPNO = 7839;
+-- 부서번호가 30이고 직책이 salesman인 사원 조회
+-- SQL에서 문자열은 '' 사용
+SELECT * FROM EMP e WHERE DEPTNO = 30 AND JOB = 'SALESMAN';
+-- 사원번호가 7698이고 부서번호가 30인 사원 조회
+SELECT * FROM EMP e WHERE DEPTNO = 30 AND EMPNO = 7698;
+-- 부서번호가 30이거나 사원직책이 CLERK인 사원 조회
+SELECT * FROM EMP e WHERE DEPTNO = 30 OR JOB = 'CLERK';
+
+
+
+
+
+
+
+
+
+
+
+-- 연봉이 36000인 사원 조회
+SELECT * FROM EMP e WHERE SAL * 12 = 36000;
+
+-- 급여가 3000보다 큰 사원 조회
+SELECT * FROM EMP e WHERE SAL > 3000;
+
+-- 급여가 3000이상인 사원조회
+SELECT * FROM EMP e WHERE SAL >= 3000;
