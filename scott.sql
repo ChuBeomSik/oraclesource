@@ -3,6 +3,14 @@ CREATE ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;
 -- SQL은 대소문자 구별하지 않음
 -- 단, 비밀번호는 구분함
 -- DML
+-- 조회(select문) 
+-- 기본형식 (해석 순서)
+-- SELECT 컬럼명 ---- ⑤
+-- FROM 테이블명 ---- ①
+-- WHERE 조건절 ---- ②
+-- GROUP BY 컬럼명 ---- ③
+-- HAVING 집계함수, 조건절 ---- ④
+-- ORDER BY 컬럼명... ---- ⑥
 -- 1) 전체 조회
 -- EMP(employee - 사원테이블)
 -- 테이블(EMP e) 열 전체(*) 조회
@@ -192,6 +200,77 @@ SELECT * FROM EMP e WHERE  ENAME NOT LIKE '%AM%';
 -- IS OR IS NOT 연산자 사용
 SELECT * FROM EMP e WHERE e.COMM IS NULL;
 SELECT * FROM EMP e WHERE e.COMM IS NOT NULL;
+
+
+
+
+
+
+
+
+-- 집합 연산자
+-- UNION : 합집합(결과 값의 중복 제거)
+-- UNION ALL : 합집합(결과 값의 중복 있음)
+-- MINUS : 차집합
+-- INTERSECT : 교집합
+
+-- 두개의 결과를 합쳐서 출력
+-- 부서번호가 10인 사원 조회(사번, 이름, 급여, 부서번호)
+-- 부서번호가 20인 사원 조회(사번, 이름, 급여)
+SELECT e.EMPNO , e.ENAME , e.SAL , e.DEPTNO 
+FROM  EMP e 
+WHERE e.DEPTNO = 10
+UNION 
+SELECT e.EMPNO , e.ENAME , e.SAL 
+FROM  EMP e 
+WHERE e.DEPTNO = 20; -- 에러 : 합집합의 경우 열의 수는 맞춰야함, 그외 타입과 열_이름도 동일해야 함
+
+SELECT e.EMPNO , e.ENAME , e.SAL 
+FROM  EMP e 
+WHERE e.DEPTNO = 10
+UNION 
+SELECT e.EMPNO , e.ENAME , e.SAL 
+FROM  EMP e 
+WHERE e.DEPTNO = 20; -- 다르게 조회할 수 있지만 조회 속도를 높이기 위해 union쓰는 경우도 있음
+
+SELECT e.EMPNO , e.ENAME , e.SAL, e.DEPTNO
+FROM  EMP e 
+WHERE e.DEPTNO = 10
+UNION ALL 
+SELECT e.EMPNO , e.ENAME , e.SAL, e.DEPTNO
+FROM  EMP e 
+WHERE e.DEPTNO = 10;
+
+SELECT e.EMPNO , e.ENAME , e.SAL, e.DEPTNO
+FROM  EMP e 
+MINUS 
+SELECT e.EMPNO , e.ENAME , e.SAL, e.DEPTNO
+FROM  EMP e 
+WHERE e.DEPTNO = 10;
+
+SELECT e.EMPNO , e.ENAME , e.SAL, e.DEPTNO
+FROM  EMP e 
+MINUS 
+SELECT e.EMPNO , e.ENAME , e.SAL, e.DEPTNO
+FROM  EMP e 
+WHERE e.DEPTNO = 10;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
