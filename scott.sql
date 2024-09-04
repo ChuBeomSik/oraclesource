@@ -123,3 +123,23 @@ SELECT * FROM EMP e WHERE SAL > 3000;
 
 -- 급여가 3000이상인 사원조회
 SELECT * FROM EMP e WHERE SAL >= 3000;
+
+-- IN : 다항 OR 연산
+SELECT * FROM EMP e WHERE e.JOB IN ('MANAGER', 'SALESMAN', 'CLERK');
+-- NOT IN : AND 연산 
+SELECT * FROM EMP e WHERE e.JOB NOT IN ('MANAGER', 'SALESMAN', 'CLERK');
+-- 부서번호가 10번이거나 20번인 사원 조회
+SELECT * FROM EMP e WHERE e.DEPTNO IN (10,20);
+
+
+
+
+
+
+
+
+
+
+
+
+
