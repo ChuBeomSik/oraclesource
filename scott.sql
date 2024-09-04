@@ -2,7 +2,7 @@ CREATE ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;
 
 -- SQL은 대소문자 구별하지 않음
 -- 단, 비밀번호는 구분함
--- DML
+-- DML (CRUD - Creat / Read / Update / Delete)
 -- 조회(select문) 
 -- 기본형식 (해석 순서)
 -- SELECT 컬럼명 ---- ⑤
