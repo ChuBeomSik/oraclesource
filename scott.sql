@@ -141,5 +141,101 @@ SELECT * FROM EMP e WHERE e.DEPTNO IN (10,20);
 
 
 
+-- BETWEEN A AND B :일정 범위 내의 데이터 조회 시 사용
+-- 급여가 2000 이상이고 3000 이하인 조회
+SELECT *
+FROM EMP e 
+WHERE e.SAL BETWEEN 2000 AND 3000;
+
+-- NOT BETWEEN A AND B : 사이의 범위가 아닌
+-- 급여가 2000이하 3000 이상인 직원 조회
+SELECT *
+FROM EMP e 
+WHERE e.SAL NOT BETWEEN 2000 AND 3000;
+
+
+
+
+
+
+
+
+-- LIKE 연산자와 와일드 카드(%, _)
+-- 문자열을 찾을 때 부분 글자만 알 경우 사용
+-- %는 문자열 전체 (LIKE '%d') : d문자로 끝나는 문자열 
+-- _는 문자 한글자에 대응 (LIKE '_d') : d문자로 끝나는 길이가 2인 문자열
+SELECT * FROM EMP e WHERE  ENAME LIKE '_j%';
+SELECT * FROM EMP e WHERE  ENAME LIKE '_L%';
+
+-- 사원명에 AM문자가 포함된 사원 조회
+SELECT * FROM EMP e WHERE  ENAME LIKE '%AM%';
+
+-- AM문자가 포함되지 않는 사원
+SELECT * FROM EMP e WHERE  ENAME NOT LIKE '%AM%';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- IS NULL
+-- null은 동등연산자 사용x
+-- IS OR IS NOT 연산자 사용
+SELECT * FROM EMP e WHERE e.COMM IS NULL;
+SELECT * FROM EMP e WHERE e.COMM IS NOT NULL;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
