@@ -258,16 +258,463 @@ WHERE e.DEPTNO = 10;
 
 
 
+-- 키워드나 예약어는 대소문자 구분 x
+-- 데이터는 대소문자 구분함
+-- UPPER(''), LOWER('') : 대문자 / 소문자로 변환
+-- INITCAP('') : 첫문자만 대문자로 변환
+-- LENGTH('') : 문자열 길이
+-- LENGTHB('') : 문자열 바이트 수
+-- SUBSTR(문자열, 시작위치) / SUBSTR(문자열, 시작위치, 추출길이)
+-- INSTR(문자열, 찾으려는 문자)
+-- INSTR(문자열, 찾으려는 문자, 위치 찾기를 시작할 대상 문자열 데이터 위치, 시작위치에서 찾으려는 문자가 몇번째인지)
+-- REPLACE(문자열, 찾는문자, 대체문자)
+-- CONCAT(문자열, 이으려는 문자열) : 한번에 3개이상 연결 불가
+-- || == CONCAT
+-- (FULL)TRIM / LTRIM / RTRIM : 특정 문자를 제거, 특정문자 입력 안할 시 기본으로 공백 제거
+
+-- smith
+SELECT *
+FROM EMP e
+WHERE UPPER(ENAME) LIKE UPPER('smith');
+
+-- LENGTH('') / LENGTHB('')
+SELECT LENGTH('한글'), LENGTHB('한글'), LENGTH('AB'), LENGTHB('AB')
+FROM DUAL -- DUAL : 오라클에서 기본으로 제공하는 가상데이터베이스
+
+SELECT JOB, SUBSTR(JOB,1,2),SUBSTR(JOB,3,2),SUBSTR(JOB,5)
+FROM EMP;
+
+
+
+
+-- 사원 이름에 s가 있는 행 구하기
+-- LIKE
+SELECT *
+FROM EMP e 
+WHERE e.ENAME LIKE '%s%';
+
+-- INSTR
+SELECT *
+FROM EMP e 
+WHERE INSTR(ENAME , 'S') > 0;
+
+-- 010-1234-1535
+-- - => 공백 혹은 삭제
+SELECT '010-1234-1535' AS  replace_before,
+REPLACE ('010-1234-1535', '-', ' ') AS replace_1,
+REPLACE('010-1234-1535','-') AS replace_2
+FROM DUAL;
+
+-- EMPNO, ENAME 연결 조회
+SELECT CONCAT(e.EMPNO , ENAME)
+FROM EMP e ;
+
+SELECT 
+'[' || TRIM('_ORACLE_') || ']' AS TRIM,
+'[' || LTRIM('_ORACLE_') || ']' AS LTRIM,
+'[' || LTRIM('<ORACLE>', '_<') || ']' AS LTRIM2,
+'[' || RTRIM('_ORACLE_') || ']' AS RTRIM,
+'[' || RTRIM('<ORACLE>', '>_') || ']' AS RTRIM2
+FROM DUAL;
+
+
+-- 숫자함수
+-- ROUND(숫자,[반올림위치])
+-- TRUNC(숫자,[[버림위치])
+-- CEIL(숫자) : 지정한 숫자와 가장 가까운  큰 정수 찾기
+-- FLOOR(숫자) : 지정한 숫자와 가장 가까운 작은 정수 찾기
+-- MOD(숫자, 나눌 숫자) : 나머지 구함
+
+SELECT 
+ROUND(1234.5678) AS round_0,
+ROUND(1234.5678,0) AS round_1,
+ROUND(1234.5678,1) AS round_2,
+ROUND(1234.5678,2) AS round_3,
+ROUND(1234.5678,-1) AS round_4,
+ROUND(1234.5678,-2) AS round_5
+FROM DUAL;
+
+SELECT 
+TRUNC(1234.5678) AS TRUNC_0,
+TRUNC(1234.5678,0) AS TRUNC_1,
+TRUNC(1234.5678,1) AS TRUNC_2,
+TRUNC(1234.5678,2) AS TRUNC_3,
+TRUNC(1234.5678,-1) AS TRUNC_4,
+TRUNC(1234.5678,-2) AS TRUNC_5
+FROM DUAL;
+
+SELECT CEIL (3.14), FLOOR(3.14), CEIL(-3.14),FLOOR(-3.14)
+FROM
+DUAL;
+
+SELECT MOD (15,6)
+FROM DUAL;
+
+-- 날짜 함수
+-- SYSDATE : 오라클 서버가 설치된 OS의 현재날짜와 시간 사용
+-- 날짜데이터 + 숫자 : 숫자만큼 일수 연산이 일어남
+-- 날짜데이터 - 날짜데이터도 가능
+-- 날짜데이터 + 날짜데이터는 불가능
+-- ADD_MONTH(날짜데이터, 개월) : 더하기
+-- MONTHS_BETWEEN(날짜데이터, 날짜데이터) : 빼기
+-- NEXT_DAY(날짜데이터, 요일문자) : 날짜데이터에서 돌아오는 요일의 날짜 반화
+-- LAST_DAY(날짜데이터) : 특정 날짜가 속한 달의 마지막 날짜 조회
+
+SELECT SYSDATE,SYSDATE-1,SYSDATE+1 FROM DUAL;
+
+-- 입사 20주년이 되는 날짜 조회
+SELECT e.EMPNO , E.ENAME , e.HIREDATE, ADD_MONTHS(E.HIREDATE,240) 
+FROM EMP e; 
+
+-- 오늘 날짜에서 입사일 빼기
+SELECT
+	e.EMPNO ,
+	e.ENAME ,
+	e.HIREDATE ,
+	SYSDATE ,
+	MONTHS_BETWEEN(e.HIREDATE, SYSDATE) AS month1,
+	MONTHS_BETWEEN(SYSDATE, e.HIREDATE) AS month2,
+	TRUNC(MONTHS_BETWEEN(SYSDATE, e.HIREDATE)) AS month3
+FROM
+	EMP e ;
+
+SELECT SYSDATE , NEXT_DAY(SYSDATE, '월요일'), LAST_DAY(SYSDATE)
+FROM
+DUAL;
+
+-- 형변환 함수
+-- NUMBER(INT타입) + '문자숫자': 연산해줌
+-- '문자 숫자' + '문자 숫자' : 연산 안해줌
+-- NUMBER + '문자열' : 연산안해줌
+-- TO_CHAR(날짜데이터, '출력되길 원하는 문자형태') : 문자로 변경
+-- TO_NUMBER(문자데이터, '인식되길 원하는 숫자형태') : 숫자로 변경
+-- 인식 되길 원하는 숫자 형태 : 9(숫자 한자리를 의미하고 빈자리는 채우지 않음) / 0(숫자 한자리를 의미하고 빈자리는 채움)
+-- TO_DATE(날짜데이터, '출력되길 원하는 날짜 형태')
+SELECT E.EMPNO, E.ENAME, E.EMPNO + '500'
+FROM EMP e;
+
+SELECT E.EMPNO, E.ENAME, E.EMPNO + 'ABC'
+FROM EMP e;
+
+-- 날짜데이터 ==> 문자데이터
+SELECT TO_CHAR(SYSDATE,'YYYY/MM/DD') AS 현재날짜
+FROM DUAL;
+
+SELECT TO_CHAR(SYSDATE,'MM') AS 현재월, TO_CHAR(SYSDATE,'MON') AS 현재월2, TO_CHAR(SYSDATE,'MONTH') AS 현재월3
+FROM DUAL;
+
+SELECT TO_CHAR(SYSDATE,'DD') AS 현재일, TO_CHAR(SYSDATE,'DDD') AS 일자, TO_CHAR(SYSDATE,'DAY') AS 요일
+FROM DUAL;
+
+SELECT
+	SYSDATE ,
+	TO_CHAR(SYSDATE, 'HH:MI:SS') AS 시간,
+	TO_CHAR(SYSDATE,'HH12:MI:SS') AS 12시기준,
+	TO_CHAR(SYSDATE,'HH24:MI:SS') AS 24시기준,
+	TO_CHAR(SYSDATE,'HH24:MI:SS AM') AS 오전오후
+FROM
+	DUAL;
+
+-- 문자데이터 ==> 숫자 데이터
+SELECT 1300 - '1500', '1300' + 1500
+FROM DUAL;
+
+-- 9(숫자 한자리를 의미하고 빈자리는 채우지 않음) OR 0(숫자 한자리를 의미하고 빈자리는 채움)
+SELECT  TO_NUMBER('1300','999999') + TO_NUMBER('1500','999999')
+FROM DUAL;
+
+-- 문자 데이터 ==> 날짜데이터
+SELECT  TO_DATE('2024-09-05', 'YYYY-MM-DD') AS TODATE1, TO_DATE('20240905', 'YYYY-MM-DD') AS TODATE2
+FROM DUAL;
+
+-- EMP테이블에서 1981-06-01 이후에 입사한 사원 조회
+SELECT E.EMPNO , E.ENAME , E.HIREDATE 
+FROM EMP e 
+WHERE E.HIREDATE >= '1981-06-01';
+
+SELECT E.EMPNO , E.ENAME , E.HIREDATE 
+FROM EMP e 
+WHERE E.HIREDATE >= TO_DATE('1981-06-01', 'YYYY-MM-DD');
+
+-- 날짜 데이터 + 날짜 데이터
+SELECT '2024-09-05' + '2024-01-02'
+FROM DUAL; -- 수치 부적합
+
+SELECT '2024-09-05' - '2024-01-02'
+FROM DUAL; -- 수치 부적합
+
+SELECT TO_DATE('2024-09-05') + TO_DATE('2024-01-02')
+FROM DUAL; -- 날짜와 날짜 가산을 할 수 없음
+
+SELECT TO_DATE('2024-09-05') - TO_DATE('2024-01-02')
+FROM DUAL;
+
+-- NULL 함수 처리
+-- NULL은 산술연산 안됨 => NULL을 다른 값으로 변경해야 함
+-- NULL값을 바꾸는 함수
+-- NVL(널값, 대체할 값)
+-- NVL2(널값, 널이 아닌 경우 반환값, 널인 경우 반환값)
+
+SELECT EMPNO , ENAME , SAL, COMM, SAL+COMM, SAL+NVL(COMM,0) 
+FROM EMP;
+
+SELECT EMPNO , ENAME , SAL, COMM, NVL2(COMM,'O','X') 
+FROM EMP;
+
+-- NULL이 아니면 SAL*12+COMM
+-- NULL이면 SAL*12
+SELECT EMPNO , ENAME , SAL, COMM, NVL2(COMM,SAL*12+COMM,SAL*12) 
+FROM EMP;
+
+-- DECODE 함수 / CASE문
+DECODE(데이터, 
+	조건1, 조건1 만족할 때 할것,
+	...
+	) AS 별칭
+	
+CASE
+	데이터
+	WHEN 조건1 THEN 값1
+	WHEN 조건2 THEN 값2
+	...
+END
+
+
+
+	
+-- JOB이 MANAGER라면 SAL*1.1
+-- JON이 SALESMAN이라면 SAL*1.5
+-- JOB이 ALALYST라면 SAL
+--				그 외 SAL*1.3 
+SELECT
+	E.EMPNO ,
+	E.ENAME ,
+	E.JOB ,
+	E.SAL,
+	DECODE(
+	JOB, 
+	'MANAGER',E.SAL*1.1,
+	'SALESMAN', SAL*1.5,
+	'ANALYST', SAL*1.1,
+	SAL*1.3) AS UPSAL
+FROM
+	EMP e ;
+
+SELECT 
+	E.EMPNO ,
+	E.ENAME ,
+	E.JOB ,
+	E.SAL,
+	CASE
+		JOB 
+		WHEN 'MANAGER' THEN E.SAL * 1.1
+		WHEN 'SALESMAN' THEN SAL * 1.5
+		WHEN 'ANALYST' THEN SAL * 1.1
+		ELSE SAL * 1.3
+	END AS UPSAL
+FROM
+	EMP e ;
+
+-- COMM이 NULL '해당사항없음'
+-- COMM이 = 0 '수당없음'
+-- COMM > 0 '수당 : COMM'
+SELECT 
+	E.EMPNO ,
+	E.ENAME ,
+	E.COMM ,
+	E.SAL,
+	CASE
+		WHEN COMM IS NULL THEN '해당사항없음'
+		WHEN COMM = 0 THEN '수당없음'
+		WHEN COMM > 0 THEN '수당: ' || E.COMM 
+	END AS COMM_TEXT
+FROM
+	EMP e ;
+
+-- EMP 테이블에서 사원들의 월 평균 근무일수는 21.5일이다. 하루 근무시간을 8시간으로 봤을 때
+-- 사원들의 하루 급여(DAY_DAY)와 시급(TIME_PAY)를 계산하여 결과를 출력한다
+-- 사번, 이름, SAL, DAY_PAY,TIME_PAY 출력
+-- 단, 하루급여는 소수점 셋째자리에서 버리고, 시급은 두번째 소수점에서 반올림하기
+SELECT
+	E.EMPNO ,
+	E.ENAME ,
+	SAL,
+	TRUNC(SAL / 21.5,2) AS DAY_PAY,
+	ROUND( SAL / 21.5 / 8,1) AS TIME_PAY
+FROM
+	EMP e ;
+
+
+
+
+-- EMP테이블에서 사원들은 입사일을 기준으로 3개월이 지난 후 첫 월요일애 정직원이 된다. 사원들의 
+-- 정직원이 되는 날짜(R_JOB)를 YYYY-MM-DD 형식으로 출력한다
+-- 사번 , 이름, 고용일, R_JOB 출력
+SELECT
+	EMPNO ,
+	ENAME,
+	E.HIREDATE ,
+	NEXT_DAY(ADD_MONTHS(E.HIREDATE, 3), '월요일') AS R_JOB
+FROM
+	EMP e ;
+
+-- 위 예제 + 추가수당
+-- COMM이 없으면 'N/A', 있으면 COMM출력
+SELECT
+	EMPNO ,
+	ENAME,
+	E.HIREDATE ,
+	NEXT_DAY(ADD_MONTHS(E.HIREDATE, 3), '월요일') AS R_JOB,
+	CASE
+		WHEN COMM IS NULL THEN 'N/A'
+		WHEN COMM IS NOT NULL THEN COMM || ''
+	END AS COMM	
+FROM
+	EMP e ;
+
+SELECT
+	EMPNO ,
+	ENAME,
+	E.HIREDATE ,
+	NEXT_DAY(ADD_MONTHS(E.HIREDATE, 3), '월요일') AS R_JOB,
+	NVL(TO_CHAR(COMM), 'N/A') AS COMM 
+FROM
+	EMP e ;
+
+
+-- EMP테이블의 모든 사원을 대상으로 직속상관의 사원번호(MGR)를 변환해서 CHG_MGR에 출력
+-- 사번, 이름, MGR, CHG_MGR 출력
+-- 단, MGR이 NULL이면 '0000' / MGR의 앞 두자리가 75이면 '5555' / 76이면 '6666' / 77이면 '7777' / 78이면 '8888' CNFFUR
+SELECT
+	EMPNO,
+	ENAME,
+	MGR,
+	CASE 
+		WHEN  E.MGR IS NULL THEN '0000'
+		WHEN E.MGR LIKE '75%' THEN '5555'
+		WHEN E.MGR LIKE '76%' THEN '6666'
+		WHEN E.MGR LIKE '77%' THEN '7777'
+		WHEN E.MGR LIKE '78%' THEN '8888'
+		ELSE '9999'
+	END AS CHG_MGR	
+FROM
+	EMP e ;
+SELECT
+	EMPNO,
+	ENAME,
+	MGR,
+	DECODE(
+	SUBSTR(TO_CHAR(MGR),1,2),
+	NULL, '0000',
+	'75','5555',
+	'76','6666',
+	'77','7777',
+	'78','8888',
+	'9999') AS CHG_MGR	
+FROM EMP e ;
+
+-- 다중행 함수
+-- SUM : 합계를 낼 열
+-- DISTINCT : 중복 제거
+-- COUNT : 행의 개수
+-- MAX : 최댓값
+-- MIN : 최솟값
+-- AVG : 평균값
+
+SELECT  SUM(SAL) AS 합 
+FROM EMP e ;
+
+SELECT  SUM(DISTINCT SAL), SUM(ALL SAL), SUM(SAL)
+FROM EMP e ;
+
+SELECT  COUNT(DISTINCT SAL), COUNT(ALL SAL), COUNT(SAL)
+FROM EMP e ;
+
+SELECT MAX(SAL), MIN(SAL) FROM EMP e;
+
+SELECT MAX(SAL), MIN(SAL) FROM EMP e WHERE E.DEPTNO = 10;
+
+-- 부서번호가 20번인 사원의 최근 입사일 조회
+SELECT 
+	MAX(E.HIREDATE) 
+FROM EMP e WHERE E.DEPTNO = 20;
+
+SELECT 
+	MIN(E.HIREDATE) 
+FROM EMP e WHERE E.DEPTNO = 20;
+
+SELECT  AVG(DISTINCT SAL), AVG(ALL SAL), AVG(SAL)
+FROM EMP e ; 
+
+-- 부서번호가 30인 사원들의 평균 추가 수당
+SELECT
+	AVG(COMM) 
+FROM EMP e WHERE E.DEPTNO = 30 ;
+
+
+-- GROUP BY절 : 결과 값을 원하는 열로 묶어 출력
+-- 각 부서별 평균 급여 출력
+SELECT E.DEPTNO ,AVG(SAL) 
+FROM EMP e 
+GROUP BY E.DEPTNO
+ORDER BY DEPTNO ;
+
+-- 각 부서별, 직책별 평균 급여 출력
+SELECT E.DEPTNO, JOB, AVG(SAL) 
+FROM EMP e 
+GROUP BY E.DEPTNO, JOB
+ORDER BY DEPTNO, JOB;
+
+-- GROUP BY 절 옆의 열이 SELECT 열에 없으면 사용불가
+SELECT ENAME, AVG(SAL) -- GROUP BY 열에 해당하는 열이 조회되지 않으므로 오류
+FROM EMP e 
+GROUP BY E.DEPTNO ;
+
+-- HAVING 절 : GROUP BY 절에 조건을 줄 때 사용
+
+-- 각 부서의 직채결 평균 급여(평균 급여가 2000 이상인 그룹만 조회)
+
+SELECT E.DEPTNO , JOB, AVG(SAL)
+FROM EMP e 
+GROUP BY E.DEPTNO, JOB
+HAVING AVG(SAL) >= 2000
+ORDER BY E.DEPTNO, JOB;
+
+-- 부서별, 평균급여, 최고급여, 최저급여, 사원 수 출력
+-- 평균급여 출력 시 소수점을 제외하고 출력
+SELECT E.DEPTNO , TRUNC(AVG(SAL)), MAX(SAL), MIN(SAL),COUNT(DEPTNO) 
+FROM EMP e 
+GROUP BY E.DEPTNO ;
+
+-- 같은 직책에 종사하는 사원이 3명 이상인 직책과 인원수 출력
+SELECT E.JOB, COUNT(JOB) 
+FROM EMP e
+GROUP BY JOB
+HAVING COUNT(JOB) >= 3 ;
+
+-- 사원들의 입사년도를 기준으로 부서별로 몇 명의 입사인원이 있는지 출력
+SELECT TO_CHAR(E.HIREDATE, 'YYYY') AS HIRE_YEAR, E.DEPTNO, COUNT(*) 
+FROM EMP e 
+GROUP BY TO_CHAR(E.HIREDATE), E.DEPTNO ;
+
+-- JOIN(조인) : 두 개이상의 테이블을 연결하여 하나의 테이블처럼 출력, 조인시 동일한 컬럼명이 있을 경우 정확한 테이블명(별칭) + 도트연산자로 지칭해줘야함
+-- 내부조인(INNER JOIN) : 일반적으로 등가조인을 (내부)조인이라 부름
+ -- 등가조인 : 테이블 연결 후 출력행을 각 테이블의 특정 열에 일치한 데이터를 기준으로 테이블 출력
+ --  		 두 테이블이 기본키(PK)-외래키(FK)관계일 때
+ -- 비등가 조인 
+-- 외부조인(OUTER JOIN) : 
+
+SELECT * FROM EMP,DEPT; -- 각 테이블의 행의 개수 곱으로 출력됨
+
+SELECT *
+FROM EMP e , DEPT d 
+WHERE E.DEPTNO = D.DEPTNO ;
 
 
 
 
 
-
-
-
-
-
+ 
 
 
 
