@@ -700,15 +700,313 @@ GROUP BY TO_CHAR(E.HIREDATE), E.DEPTNO ;
 -- JOIN(조인) : 두 개이상의 테이블을 연결하여 하나의 테이블처럼 출력, 조인시 동일한 컬럼명이 있을 경우 정확한 테이블명(별칭) + 도트연산자로 지칭해줘야함
 -- 내부조인(INNER JOIN) : 일반적으로 등가조인을 (내부)조인이라 부름
  -- 등가조인 : 테이블 연결 후 출력행을 각 테이블의 특정 열에 일치한 데이터를 기준으로 테이블 출력
- --  		 두 테이블이 기본키(PK)-외래키(FK)관계일 때
+ --  		 두 테이블이 기본키(PK)-외래키(FK)관계일 때 (서로 다른 테이블에 동일한 필드가 있을 때 같은 값을 같는 관계일 때)
  -- 비등가 조인 
--- 외부조인(OUTER JOIN) : 
+-- 외부조인(OUTER JOIN) : [FULL | LEFT | RIGHT] JOIN
+-- LEFT : 오른쪽 테이블에 + 기호
+-- RIGHT : 왼쪽 테이블에 + 기호
 
 SELECT * FROM EMP,DEPT; -- 각 테이블의 행의 개수 곱으로 출력됨
 
 SELECT *
 FROM EMP e , DEPT d 
 WHERE E.DEPTNO = D.DEPTNO ;
+
+-- 위 sql문에서 sal이 3000이상인 사원 조회
+SELECT *
+FROM EMP e , DEPT d 
+WHERE E.DEPTNO = D.DEPTNO AND e.SAL >= 3000 ;
+
+-- 비등가 조인 : 등가조인 이외의 방식, 다른 두 테이블에서 한 테이블의 필드값이 다른 테이블 필드의 값 범위내에 들어갈 수 있는 경우
+-- ENP / SALGRADE
+SELECT *
+FROM EMP e , SALGRADE s 
+WHERE E.SAL BETWEEN S.LOSAL AND S.HISAL ;
+
+-- 자체 조인 : 같은 테이블내에서 조인, 잘 사용하지는 않지만 조직관계도를 나타낼 때 사용함
+SELECT E.EMPNO, E.ENAME, E.MGR, E2.EMPNO AS MGR_EMPNO, E2.ENAME AS MGR_ENAME
+FROM EMP e , EMP e2
+WHERE E.MGR = E2.EMPNO; 
+
+-- LEFT JOIN
+SELECT E.EMPNO, E.ENAME, E.MGR, E2.EMPNO AS MGR_EMPNO, E2.ENAME AS MGR_ENAME
+FROM EMP e , EMP e2
+WHERE E.MGR = E2.EMPNO(+);
+
+-- LIGHT JOIN
+SELECT E.EMPNO, E.ENAME, E.MGR, E2.EMPNO AS MGR_EMPNO, E2.ENAME AS MGR_ENAME
+FROM EMP e , EMP e2
+WHERE E.MGR(+) = E2.EMPNO;
+
+-- 쿼리문 변화
+-- 내부조인 : JOIN ~ ON
+-- 외부조인 : [FULL | LEFT(생략 시 기본값) | RIGHT] JOIN ~ ON
+
+SELECT *
+FROM EMP e JOIN DEPT d 
+ON E.DEPTNO = D.DEPTNO ;
+
+SELECT *
+FROM EMP e JOIN DEPT d 
+ON E.DEPTNO = D.DEPTNO
+WHERE e.SAL >= 3000 ;
+
+SELECT E.EMPNO, E.ENAME, E.MGR, E2.EMPNO AS MGR_EMPNO, E2.ENAME AS MGR_ENAME
+FROM EMP e LEFT OUTER JOIN EMP e2
+ON E.MGR = E2.EMPNO;
+
+SELECT E.EMPNO, E.ENAME, E.MGR, E2.EMPNO AS MGR_EMPNO, E2.ENAME AS MGR_ENAME
+FROM EMP e RIGHT OUTER JOIN EMP e2
+ON E.MGR = E2.EMPNO;
+
+-- TABLE 3개 조인
+--SELECT *
+--FROM EMP e1 JOIN EMP e2 ON E1.MRG = E2.EMPNO JOIN EMPE3 ON E1.MRG...
+
+-- 각 부서별 평균급여, 최대급여, 최소급여, 사원수를 조회
+-- 부서번호, 부서명, 평균급여(AVG_SAL), 최대급여(MAX_SAL), 최소급여(MIN_SAL), 사원수(CNT)
+SELECT
+	D.DEPTNO,
+	D.DNAME, 
+	AVG(E.SAL) AS AVG_SAL,
+	MAX(E.SAL) AS MAS_SAL,
+	MIN(E.SAL) AS MIN_SAL,
+	COUNT(E.DEPTNO) AS CNT
+FROM
+	EMP e
+JOIN DEPT d ON
+	E.DEPTNO = D.DEPTNO
+GROUP BY
+	D.DEPTNO, D.DNAME 
+ORDER BY
+	D.DEPTNO ;
+
+-- 모든 부서정보와 사원정보를 조회
+-- 부서번호, 부서명, 사원번호, 사원명, 직무(JOB) 조회
+SELECT
+	D.DEPTNO ,
+	D.DNAME ,
+	E.EMPNO ,
+	E.ENAME ,
+	E.JOB
+FROM
+	EMP e
+RIGHT OUTER JOIN DEPT d 
+ON E.DEPTNO = D.DEPTNO 
+ORDER BY D.DEPTNO , E.EMPNO ;
+
+-- 서브쿼리 : 쿼리문 안에 또 다른 쿼리문이 포함
+-- SELECT, FROM, WHERE절 안에 다 들어갈 수 있음
+-- 서브쿼리로 들어갈 수 있는 것들 : SELECT, FROM, WHERE, UPDATE, DELETE, INSERT등 
+
+-- JONES의 월급보다 많은 월급을 받는 사원 조회
+SELECT *
+FROM EMP e 
+WHERE E.SAL > (SELECT E2.SAL FROM EMP e2 WHERE E2.ENAME = 'JONES');
+
+-- 생성 결과가 하나인 단일행 서브쿼리 : 비교연산자
+-- KING보다 빠른 입사자 조회
+SELECT *
+FROM EMP e 
+WHERE E.HIREDATE < (SELECT E2.HIREDATE FROM EMP e2 WHERE E2.ENAME = 'KING');
+
+-- ALLEN 보다 추가수당 많이 받는 사원 조회
+SELECT *
+FROM EMP e 
+WHERE E.COMM > (SELECT E2.COMM FROM EMP e2 WHERE E2.ENAME = 'ALLEN');
+
+-- 20번 부서의 근무하는 사원 중 전체 사원의 평균급여보다 높은 급여를 받는 사원 조회
+SELECT *
+FROM EMP e 
+WHERE E.SAL > (SELECT AVG(E2.SAL) FROM EMP e2 WHERE E.DEPTNO = 20);
+
+-- 20번 부서에 근무하는 사원 중 전체 사원의 평균급여보다 높은 급여를 받은 사원 조회 + 부서명, 부서위치
+SELECT E.ENAME , D.DNAME , D.LOC 
+FROM EMP e JOIN DEPT d ON E.DEPTNO = D.DEPTNO AND E.SAL > (SELECT AVG(E2.SAL) FROM EMP e2 WHERE E.DEPTNO = 20);
+
+-- 실행 결과가 여러 개인 다중행 서브쿼리
+-- IN : 메인 쿼리의 데이터가 서브쿼리의 결과 중 하나라도 일치한 데이터가 있다면 TRUE
+-- ANY(SOME) : 메인 쿼리의 조건식을 만족하는 서브쿼리의 결과가 하나 이상이면 TRUE
+-- ALL : 메인 쿼리의 조건식을 서브 쿼리의 결과 모두가 만족하면 TRUE
+-- EXISTS : 서브 쿼리의 결과가 존재하면(즉, 행이 1개 이상일 경우) TRUE
+
+-- 각 부서별 최고 급여와 동일하거나 큰 급여를 받는 사원 조회
+SELECT  *
+FROM EMP e 
+WHERE E.SAL IN (SELECT MAX(E2.SAL) FROM EMP e2 GROUP BY E2.DEPTNO);
+
+SELECT  *
+FROM EMP e 
+WHERE E.SAL = ANY (SELECT MAX(E2.SAL) FROM EMP e2 GROUP BY E2.DEPTNO);
+
+SELECT  *
+FROM EMP e 
+WHERE E.SAL = SOME (SELECT MAX(E2.SAL) FROM EMP e2 GROUP BY E2.DEPTNO);
+
+-- 30번 부서의 급여보다 적은 급여를 받는 사원조회 == 30번 부서의 최대 급여보다 적은 급여를 받는 사원조회
+SELECT  *
+FROM EMP e 
+WHERE E.SAL < ANY (SELECT E2.SAL FROM EMP e2 WHERE E2.DEPTNO = 30)
+ORDER BY E.SAL, E.EMPNO ;
+
+-- 30번 부서의 최소 급여보다 적은 급여를 받는 사원조회
+SELECT  *
+FROM EMP e 
+WHERE E.SAL < ALL (SELECT E2.SAL FROM EMP e2 WHERE E2.DEPTNO = 30)
+ORDER BY E.SAL, E.EMPNO ;
+
+SELECT  *
+FROM EMP e 
+WHERE E.SAL < ANY (SELECT MIN(E2.SAL) FROM EMP e2 WHERE E2.DEPTNO = 30)
+ORDER BY E.SAL, E.EMPNO ;
+
+-- EXISTS
+SELECT *
+FROM EMP e 
+WHERE EXISTS (SELECT DNAME FROM DEPT d WHERE DEPTNO = 50);
+
+SELECT *
+FROM EMP e 
+WHERE EXISTS (SELECT DNAME FROM DEPT d WHERE DEPTNO = 10);
+
+-- FROM 절 서브쿼리 작성 : 인라인뷰(INLINE VIEW)
+SELECT E10.EMPNO, E10.ENAME, E10.DEPTNO, D.DNAME, D.LOC
+FROM (SELECT * FROM EMP e WHERE DEPTNO = 10) E10, (SELECT * FROM DEPT) D 
+WHERE E10.DEPTNO = D.DEPTNO;
+
+SELECT E10.EMPNO, E10.ENAME, E10.DEPTNO, D.DNAME, D.LOC
+FROM (SELECT * FROM EMP e WHERE DEPTNO = 10) E10, (SELECT * FROM DEPT) D 
+WHERE E10.DEPTNO = D.DEPTNO;
+
+-- SELECT(스칼라 서브쿼리) 절에 작성하는 서브쿼리는 단 하나의 결과만 반환해야 함, ()로 묶어야함
+SELECT
+	E.EMPNO ,
+	E.JOB ,
+	E.SAL ,
+	(
+	SELECT
+		GRADE
+	FROM
+		SALGRADE s
+	WHERE
+		E.SAL BETWEEN S.LOSAL AND S.HISAL) AS SALGRADE,
+	E.DEPTNO,
+	(
+	SELECT
+		DNAME
+	FROM
+		DEPT d
+	WHERE
+		E.DEPTNO = D.DEPTNO) AS DNAME
+FROM
+	EMP e ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
