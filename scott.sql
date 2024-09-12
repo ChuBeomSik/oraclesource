@@ -1514,6 +1514,7 @@ INSERT INTO DEPT_FK VALUES(50, 'DATABASE', 'SEOUL');
 INSERT INTO DEPT_FK VALUES(10, 'NETWORK', 'BUSAN');
 INSERT INTO EMP_FK2 VALUES (9999, '테스트', 'CLERK', '7788', '2017-04-30', 1200, NULL, 50);
 
+-- CASECAD : 사용자와 객체 모두 삭제
 -- ON DELETE CASCADE : 부모 삭제 시 참조하는 자식 데이터도 같이 삭제
 -- ON DELETE SET NULL : 부모 삭제 시 참조하는 자식 데이터의 값을 NULL로 변경
 -- 테이블에서만 선언가능하며 변경 불가능
