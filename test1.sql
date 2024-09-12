@@ -10,3 +10,4 @@ CREATE TABLE board(
 
 -- 시퀀스 생성 : 1씩 증가 board_seq
 CREATE SEQUENCE board_seq;
+

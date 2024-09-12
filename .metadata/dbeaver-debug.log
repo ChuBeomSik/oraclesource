@@ -99,3 +99,8 @@ Warning: NLS unused message: FindReplace_Status_replacements_label in: org.eclip
 2024-09-12 09:38:44.946 - Execution context opened (test1; SQLEditor <test1.sql>; 4)
 2024-09-12 09:38:44.972 - Connected (oracle_thin-191bfcf2037-16b2901f5eb359e4, Oracle JDBC driver [21.3.0.0.0])
 2024-09-12 09:38:44.980 - Execution context opened (system; SQLEditor <system.sql>; 5)
+2024-09-12 12:06:06.427 - Execution context closed (system, 5)
+2024-09-12 12:06:06.486 - Execution context closed (test1, 4)
+2024-09-12 12:06:06.809 - DBeaver is stopping
+2024-09-12 12:06:06.811 - Stop instance server
+2024-09-12 12:06:07.822 - DBeaver shutdown completed

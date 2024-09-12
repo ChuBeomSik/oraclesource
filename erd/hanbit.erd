@@ -4,13 +4,13 @@
   "settings": {
     "width": 2000,
     "height": 2000,
-    "scrollTop": -58.6667,
-    "scrollLeft": -466.6667,
+    "scrollTop": -71.6667,
+    "scrollLeft": -145.6667,
     "zoomLevel": 1,
-    "show": 431,
-    "database": 4,
+    "show": 492,
+    "database": 8,
     "databaseName": "",
-    "canvasType": "ERD",
+    "canvasType": "@dineug/erd-editor/builtin-schema-sql",
     "language": 1,
     "tableNameCase": 4,
     "columnNameCase": 2,
@@ -36,12 +36,77 @@
     "memoIds": []
   },
   "collections": {
-    "tableEntities": {},
-    "tableColumnEntities": {},
+    "tableEntities": {
+      "9rfZuIw7frQB9CrR1dlca": {
+        "id": "9rfZuIw7frQB9CrR1dlca",
+        "name": "users",
+        "comment": "",
+        "columnIds": [
+          "5YLqJ0gM5lW9IEI9x-BC9"
+        ],
+        "seqColumnIds": [
+          "5YLqJ0gM5lW9IEI9x-BC9"
+        ],
+        "ui": {
+          "x": 12,
+          "y": 107.6667,
+          "zIndex": 2,
+          "widthName": 60,
+          "widthComment": 60,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1726107399586,
+          "createAt": 1726107328436
+        }
+      }
+    },
+    "tableColumnEntities": {
+      "5YLqJ0gM5lW9IEI9x-BC9": {
+        "id": "5YLqJ0gM5lW9IEI9x-BC9",
+        "tableId": "9rfZuIw7frQB9CrR1dlca",
+        "name": "code",
+        "comment": "",
+        "dataType": "VARCHAR2",
+        "default": "",
+        "options": 12,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 61,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1726107413712,
+          "createAt": 1726107399586
+        }
+      }
+    },
     "relationshipEntities": {},
     "indexEntities": {},
     "indexColumnEntities": {},
     "memoEntities": {}
   },
-  "lww": {}
+  "lww": {
+    "9rfZuIw7frQB9CrR1dlca": [
+      "tableEntities",
+      1726107328435,
+      1726107415144,
+      {
+        "name": 1726107352565
+      }
+    ],
+    "5YLqJ0gM5lW9IEI9x-BC9": [
+      "tableColumnEntities",
+      1726107399585,
+      -1,
+      {
+        "name": 1726107402613,
+        "dataType": 1726107410408,
+        "options(notNull)": 1726107412336,
+        "options(unique)": 1726107413712
+      }
+    ]
+  }
 }
