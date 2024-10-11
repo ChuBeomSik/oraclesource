@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+	<item id="Suggestion/NodeList/OracleTableColumn">
+		<column name="컬럼명" visible="true" order="0" width="83"/>
+		<column name="#" visible="true" order="1" width="25"/>
+		<column name="Type" visible="true" order="2" width="101"/>
+		<column name="Type Mod" visible="false" order="3" width="100"/>
+		<column name="Not Null" visible="true" order="3" width="57"/>
+		<column name="디폴트" visible="true" order="4" width="48"/>
+		<column name="Comment" visible="true" order="5" width="66"/>
+	</item>
+</items>

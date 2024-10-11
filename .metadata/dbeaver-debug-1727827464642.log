@@ -1,0 +1,211 @@
+2024-09-24 09:17:20.369 - DBeaver 24.2.1.202409221725 is starting
+2024-09-24 09:17:20.370 - OS: Windows 10 10.0 (amd64)
+2024-09-24 09:17:20.370 - Java version: 17.0.6 by Eclipse Adoptium (64bit)
+2024-09-24 09:17:20.371 - Install path: 'C:\Program Files\DBeaver'
+2024-09-24 09:17:20.371 - Instance path: 'file:/C:/source/oraclesource/'
+2024-09-24 09:17:20.372 - Memory available 64Mb/1024Mb
+2024-09-24 09:17:20.381 - Create display
+2024-09-24 09:17:20.493 - Initialize desktop platform...
+2024-09-24 09:17:20.501 - send collected statistics
+2024-09-24 09:17:20.618 - BounceCastle bundle found. Use JCE provider BC
+> Start Core File Systems [org.eclipse.core.filesystem 1.11.0.v20240824-0952]
+> Start Core Resource Management [org.eclipse.core.resources 3.21.0.v20240805-1607]
+> Start 팀 지원 핵심 [org.eclipse.team.core 3.10.500.v20240621-0541]
+> Start DBeaver UI Navigator [org.jkiss.dbeaver.ui.navigator 1.0.139.202409221725]
+2024-09-24 09:17:20.822 - Initialize base platform...
+> Start DBeaver UI Editors - Base [org.jkiss.dbeaver.ui.editors.base 1.0.139.202409221725]
+2024-09-24 09:17:20.854 - Platform initialized (361ms)
+2024-09-24 09:17:20.916 - Starting instance server at http://localhost:49804
+2024-09-24 09:17:20.932 - Run workbench
+> Start Eclipse e4 작업영역 SWT [org.eclipse.e4.ui.workbench.swt 0.17.500.v20240807-0911]
+> Start Eclipse Application Services [org.eclipse.e4.core.services 2.4.400.v20240413-1529]
+> Start Eclipse UI Application Services [org.eclipse.e4.ui.services 1.6.300.v20231201-1637]
+> Start Eclipse e4 Progress View [org.eclipse.e4.ui.progress 0.4.600.v20240606-1020]
+> Start Eclipse Bindings Support [org.eclipse.e4.ui.bindings 0.14.400.v20240321-1245]
+> Start Eclipse e4 core commands [org.eclipse.e4.core.commands 1.1.400.v20240424-0444]
+> Start EMF XML/XMI Persistence [org.eclipse.emf.ecore.xmi 2.38.0.v20240721-0634]
+> Start Eclipse CSS SWT Theme Support [org.eclipse.e4.ui.css.swt.theme 0.14.400.v20240424-0956]
+> Start Eclipse e4 작업영역 기능 추가 [org.eclipse.e4.ui.workbench.addons.swt 1.5.500.v20240620-1945]
+Warning: NLS unused message: 이유 in: org.eclipse.ui.internal.messages
+> Start Eclipse e4 작업영역 SWT 렌더러 [org.eclipse.e4.ui.workbench.renderers.swt 0.16.500.v20240727-1037]
+> Start Eclipse Dependency Injection Extensions [org.eclipse.e4.core.di.extensions 0.18.300.v20240413-1529]
+> Start Eclipse CSS SWT Support [org.eclipse.e4.ui.css.swt 0.15.400.v20240321-1245]
+> Start 기본 문서 편집기 [org.eclipse.ui.editors 3.18.0.v20240807-0735]
+> Start 텍스트 편집기 프레임워크 [org.eclipse.ui.workbench.texteditor 3.18.0.v20240819-1419]
+2024-09-24 09:17:22.405 - Configure workbench window
+> Start DBeaver SQL Model [org.jkiss.dbeaver.model.sql 1.0.129.202409221725]
+2024-09-24 09:17:22.541 - Total database drivers: 120 (120)
+> Start 도움말 시스템 코어 [org.eclipse.help 3.10.400.v20240415-0528]
+2024-09-24 09:17:22.621 - Create actions
+2024-09-24 09:17:22.626 - Disable Eclipse action set 'org.eclipse.ui.edit.text.actionSet.annotationNavigation'
+2024-09-24 09:17:22.627 - Disable Eclipse action set 'org.eclipse.ui.WorkingSetActionSet'
+2024-09-24 09:17:22.627 - Disable Eclipse action set 'org.eclipse.ui.actionSet.openFiles'
+2024-09-24 09:17:22.627 - Create workbench actions
+2024-09-24 09:17:23.049 - Initialize workbench window
+2024-09-24 09:17:23.055 - Finish initialization
+> Start DBeaver UI Editors - Data [org.jkiss.dbeaver.ui.editors.data 1.0.139.202409221725]
+Warning: NLS unused message: actions_navigator__objects in: org.jkiss.dbeaver.ui.editors.sql.internal.SQLEditorMessages
+> Start DBeaver UI Editors - SQL [org.jkiss.dbeaver.ui.editors.sql 1.0.139.202409221725]
+Warning: NLS unused message: FindReplace_title in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_Find_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_Replace_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_Direction in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_ForwardRadioButton_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_BackwardRadioButton_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_Scope in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_GlobalRadioButton_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_SelectedRangeRadioButton_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_Options in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_CaseCheckBox_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_WrapCheckBox_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_WholeWordCheckBox_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_IncrementalCheckBox_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_RegExCheckbox_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_FindNextButton_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_ReplaceFindButton_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_ReplaceSelectionButton_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_ReplaceAllButton_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_SelectAllButton_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_CloseButton_label in: org.eclipse.ui.texteditor.EditorMessages
+Warning: NLS unused message: FindReplace_Status_replacements_label in: org.eclipse.ui.texteditor.EditorMessages
+> Start DBeaver SQL Terminal [org.jkiss.dbeaver.ui.editors.sql.terminal 1.0.115.202409221725]
+> Start 핵심 비교 지원 [org.eclipse.compare.core 3.8.500.v20240524-2010]
+> Start 인터넷 연결 관리 사용자 인터페이스 [org.eclipse.ui.net 1.5.400.v20240413-1529]
+> Start Internet Connection Management [org.eclipse.core.net 1.5.500.v20240625-1706]
+> Start DBeaver Sample Database [org.jkiss.dbeaver.ext.sample.database 1.0.176.202409221725]
+> Start DBeaver Tip of the day [org.jkiss.dbeaver.ext.ui.tipoftheday 1.0.145.202409221725]
+> Start GEF Classic Draw2d [org.eclipse.draw2d 3.17.0.202409021815]
+> Start GEF Classic GEF (MVC) [org.eclipse.gef 3.19.0.202409021815]
+> Start DBeaver ERD UI [org.jkiss.dbeaver.erd.ui 3.0.99.202409221725]
+> Start DBeaver ERD Model [org.jkiss.dbeaver.erd.model 1.0.99.202409221725]
+> Start DBeaver Dashboard UI [org.jkiss.dbeaver.ui.dashboard 1.0.136.202409221725]
+> Start DBeaver Dashboards Model [org.jkiss.dbeaver.model.dashboard 1.0.12.202409221725]
+> Start DBeaver JDBC Model [org.jkiss.dbeaver.model.jdbc 1.0.32.202409221725]
+> Start DBeaver Oracle Model [org.jkiss.dbeaver.ext.oracle 2.1.224.202409221725]
+> Start 콘솔 [org.eclipse.ui.console 3.14.100.v20240429-1358]
+> Start 디버그 핵심 [org.eclipse.debug.core 3.21.500.v20240801-2219]
+> Start DBeaver Tasks - Native Tools UI [org.jkiss.dbeaver.tasks.native.ui 1.0.117.202409221725]
+> Start DBeaver Oracle UI [org.jkiss.dbeaver.ext.oracle.ui 1.0.126.202409221725]
+> Start DBeaver Tasks - General UI [org.jkiss.dbeaver.tasks.ui 1.0.117.202409221725]
+> Start DBeaver UI Editors - Connections [org.jkiss.dbeaver.ui.editors.connection 1.0.130.202409221725]
+2024-09-24 09:17:26.339 - Connect with 'system' (oracle_thin-191ea4ef014-61e97f5a605275ee)
+> Start DBeaver SQL Language Semantic Model [org.jkiss.dbeaver.model.lsm 1.0.34.202409221725]
+2024-09-24 09:17:26.368 - Execution context opened (system; Main; 0)
+2024-09-24 09:17:26.415 - Connect with 'scott' (oracle_thin-191ea5149d0-43fc6921772a7b5d)
+2024-09-24 09:17:26.416 - Execution context opened (scott; Main; 1)
+2024-09-24 09:17:26.833 - Ambiguous tableName collection at nonjoinedTableReference
+2024-09-24 09:17:27.178 - Execution context opened (scott; Metadata; 2)
+2024-09-24 09:17:27.333 - Execution context opened (system; Metadata; 3)
+2024-09-24 09:17:27.465 - Connected (oracle_thin-191ea5149d0-43fc6921772a7b5d, Oracle JDBC driver [21.3.0.0.0])
+2024-09-24 09:17:27.594 - Connected (oracle_thin-191ea4ef014-61e97f5a605275ee, Oracle JDBC driver [21.3.0.0.0])
+2024-09-24 09:17:27.678 - Execution context opened (scott; SQLEditor <scott.sql>; 4)
+2024-09-24 09:17:27.906 - Execution context opened (system; SQLEditor <system.sql>; 5)
+2024-09-24 09:17:28.627 - Ambiguous tableName collection at nonjoinedTableReference
+2024-09-24 09:19:47.827 - Connect with 'orderpass' (oracle_thin-191ea6aa089-20eabc849ade2a8b)
+2024-09-24 09:19:47.829 - Execution context opened (orderpass; Main; 6)
+2024-09-24 09:19:47.893 - Execution context opened (orderpass; Metadata; 7)
+2024-09-24 09:19:47.938 - Connected (oracle_thin-191ea6aa089-20eabc849ade2a8b, Oracle JDBC driver [21.3.0.0.0])
+2024-09-24 09:19:47.940 - Execution context opened (orderpass; SQLEditor <Script.sql>; 8)
+2024-09-24 09:20:16.039 - Can't get column 'PLUGGED_IN': 부적합한 열 이름
+2024-09-24 09:20:29.111 - SQL Error [955] [42000]: ORA-00955: 기존의 객체가 이름을 사용하고 있습니다.
+
+org.jkiss.dbeaver.model.sql.DBSQLException: SQL Error [955] [42000]: ORA-00955: 기존의 객체가 이름을 사용하고 있습니다.
+
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCStatementImpl.executeStatement(JDBCStatementImpl.java:133)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.executeStatement(SQLQueryJob.java:631)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.lambda$2(SQLQueryJob.java:522)
+	at org.jkiss.dbeaver.model.exec.DBExecUtils.tryExecuteRecover(DBExecUtils.java:192)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.executeSingleQuery(SQLQueryJob.java:541)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.extractData(SQLQueryJob.java:1001)
+	at org.jkiss.dbeaver.ui.editors.sql.SQLEditor$QueryResultsContainer.readData(SQLEditor.java:4240)
+	at org.jkiss.dbeaver.ui.controls.resultset.ResultSetJobDataRead.lambda$0(ResultSetJobDataRead.java:128)
+	at org.jkiss.dbeaver.model.exec.DBExecUtils.tryExecuteRecover(DBExecUtils.java:192)
+	at org.jkiss.dbeaver.ui.controls.resultset.ResultSetJobDataRead.run(ResultSetJobDataRead.java:126)
+	at org.jkiss.dbeaver.ui.controls.resultset.ResultSetViewer$ResultSetDataPumpJob.run(ResultSetViewer.java:5162)
+	at org.jkiss.dbeaver.model.runtime.AbstractJob.run(AbstractJob.java:117)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.sql.SQLSyntaxErrorException: ORA-00955: 기존의 객체가 이름을 사용하고 있습니다.
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:630)
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:564)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1231)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:772)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:299)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:512)
+	at oracle.jdbc.driver.T4CStatement.doOall8(T4CStatement.java:123)
+	at oracle.jdbc.driver.T4CStatement.executeForRows(T4CStatement.java:1200)
+	at oracle.jdbc.driver.OracleStatement.executeSQLStatement(OracleStatement.java:1820)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1472)
+	at oracle.jdbc.driver.OracleStatement.executeInternal(OracleStatement.java:2505)
+	at oracle.jdbc.driver.OracleStatement.execute(OracleStatement.java:2460)
+	at oracle.jdbc.driver.OracleStatementWrapper.execute(OracleStatementWrapper.java:328)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCStatementImpl.execute(JDBCStatementImpl.java:332)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCStatementImpl.executeStatement(JDBCStatementImpl.java:131)
+	... 12 more
+Caused by: Error : 955, Position : 13, Sql = CREATE TABLE cafe
+(
+  cafeCode  NVARCHAR2(20) NOT NULL,
+  name      NVARCHAR2(10) NOT NULL,
+  president VARCHAR2(10)  NOT NULL,
+  tel       NVARCHAR2(20) NOT NULL,
+  loc       NVARCHAR2(30) NOT NULL,
+  CONSTRAINT PK_cafe PRIMARY KEY (cafeCode)
+), OriginalSql = CREATE TABLE cafe
+(
+  cafeCode  NVARCHAR2(20) NOT NULL,
+  name      NVARCHAR2(10) NOT NULL,
+  president VARCHAR2(10)  NOT NULL,
+  tel       NVARCHAR2(20) NOT NULL,
+  loc       NVARCHAR2(30) NOT NULL,
+  CONSTRAINT PK_cafe PRIMARY KEY (cafeCode)
+), Error Msg = ORA-00955: 기존의 객체가 이름을 사용하고 있습니다.
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:637)
+	... 26 more
+2024-09-24 09:24:51.302 - SWT resource leak detected
+java.lang.Error: SWT Resource was not properly disposed
+	at org.eclipse.swt.graphics.Resource.initNonDisposeTracking(Resource.java:172)
+	at org.eclipse.swt.graphics.Resource.<init>(Resource.java:120)
+	at org.eclipse.swt.graphics.Image.<init>(Image.java:621)
+	at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:340)
+	at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:289)
+	at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:267)
+	at org.jkiss.dbeaver.ui.DBeaverIcons.getCompositeIcon(DBeaverIcons.java:170)
+	at org.jkiss.dbeaver.ui.DBeaverIcons.getIconDescriptor(DBeaverIcons.java:122)
+	at org.jkiss.dbeaver.ui.DBeaverIcons.getImage(DBeaverIcons.java:94)
+	at org.jkiss.dbeaver.ui.editors.sql.SQLEditor.refreshEditorIconAndTitle(SQLEditor.java:3069)
+	at org.jkiss.dbeaver.ui.editors.sql.SQLEditor.onDataSourceChange(SQLEditor.java:2984)
+	at org.jkiss.dbeaver.ui.editors.sql.SQLEditor.lambda$31(SQLEditor.java:3247)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4099)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3715)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.jkiss.dbeaver.ui.app.standalone.DBeaverApplication.start(DBeaverApplication.java:293)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.jkiss.dbeaver.launcher.DBeaverLauncher.invokeFramework(DBeaverLauncher.java:650)
+	at org.jkiss.dbeaver.launcher.DBeaverLauncher.basicRun(DBeaverLauncher.java:610)
+	at org.jkiss.dbeaver.launcher.DBeaverLauncher.run(DBeaverLauncher.java:1461)
+> Start DBeaver Tasks View [org.jkiss.dbeaver.tasks.ui.view 1.0.88.202409221725]
+2024-09-24 09:26:08.916 - Can't get column 'COLUMN_NAMES_NUMS': 부적합한 열 이름
+2024-09-24 09:27:42.505 - Execution context closed (system, 5)
+2024-09-24 09:27:42.540 - Execution context closed (scott, 4)
+2024-09-24 09:27:42.591 - Execution context closed (orderpass, 8)
+2024-09-24 09:27:42.908 - DBeaver is stopping
+2024-09-24 09:27:42.911 - Stop instance server
+2024-09-24 09:27:43.923 - DBeaver shutdown completed
